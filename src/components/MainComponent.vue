@@ -17,7 +17,13 @@ export default {
         return 'https://img.icons8.com/?size=1x&id=t3NE3BsOAQwq&format=png'
       } else if (lang == 'ja') {
         return 'https://img.icons8.com/?size=512&id=McQbrq9qaQye&format=png'
-      }
+      } else if (lang == 'es') {
+        return 'https://img.icons8.com/?size=512&id=MRQWA3gxIrCt&format=png'
+      } else if (lang == 'fr') {
+        return 'https://img.icons8.com/?size=512&id=3muzEmi4dpD5&format=png'
+      } else if (lang == 'de') {
+        return 'https://img.icons8.com/?size=512&id=hTMPE6ntTofO&format=png'
+      } 
       else {
         return 'https://img.icons8.com/?size=512&id=39590&format=png'
       }
@@ -33,10 +39,11 @@ export default {
       <li v-for="(singleFilm, i) in store.films" :key='i'>
         <ol>
           <li> Titolo: {{ singleFilm.title }}</li>
+          <li>  <img :src="'https://image.tmdb.org/t/p/w500'+ singleFilm.poster_path" alt="Poster not available"></li>
           <li> Titolo originale: {{ singleFilm.original_title }}</li>
           <li class="text-uppercase"> 
             <img :src="flags(singleFilm.original_language)" alt="">
-            Lingua orginale:{{ singleFilm.original_language }}</li>
+            Lingua originale:{{ singleFilm.original_language }}</li>
           <li> Votazione: {{ singleFilm.vote_average }}</li>
         </ol>
       </li>
@@ -46,6 +53,7 @@ export default {
       <li v-for="(singleSeries, i) in store.seriesTv" :key='i'>
         <ol>
           <li> Titolo:{{ singleSeries.name }}</li>
+          <li>  <img :src="'https://image.tmdb.org/t/p/w500'+ singleSeries.poster_path" alt="Poster not available"></li>
           <li> Titolo originale:{{ singleSeries.original_name }}</li>
           <li class="text-uppercase"> 
             <img :src="flags(singleSeries.original_language)" alt="">
