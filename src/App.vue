@@ -3,6 +3,8 @@
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
+import axios from 'axios';
+
 
 export default {
   components :{
@@ -12,16 +14,43 @@ export default {
   },
 
   data() {
-    return {  }
+    return {   
+    searchFilm :'',
+    films : []
+  };
   },
-  methods: {}
-}
+  methods: {
+    search() {
+      axios
+      .get('https://api.themoviedb.org/3/search/movie', {
+        params: {
+          api_key: 'a7519aa2a486095820e427650422a38e',
+          query: this.searchFilm
+        }
+      })
+      .then (res => {
+        console.log(res);
+
+        this.films = this.data.results;
+        
+      });
+    } 
+  },
+};
 </script>
 
 <template>
-  <HeaderComponent />
+    <header>
+  <input type="text" placeholder="Inserisci il film"
+  v-model="searchFilm">
+  <button @click="search()">Cerca</button>
+  </header>
+  <main>
+    {{ films }}
+  </main>
+  <!-- <HeaderComponent />
   <MainComponent />
-  <FooterComponent />
+  <FooterComponent /> -->
 </template>
 
 <style lang="scss">

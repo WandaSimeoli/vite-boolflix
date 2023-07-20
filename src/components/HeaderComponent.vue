@@ -7,12 +7,12 @@ export default {
   data() {
     return {  }
   },
-  methods: {}
+  methods: {
+  }
 }
 </script>
 
 <template>
-
 </template>
 
 <style scoped lang="scss">
