@@ -15,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <header class=" text-bg-dark d-flex align-items-center justify-content-between p-4">
+  <header class=" text-bg-danger d-flex align-items-center justify-content-between p-4">
     <img src="../assets/img/logo.png" alt="Logo Boolflix" class="text-bg-dark rounded">
     <div class="input-group mb-3 w-25 m-3">
       <input type="text" placeholder="Inserisci il film" class="form-control " aria-describedby="button-addon2"

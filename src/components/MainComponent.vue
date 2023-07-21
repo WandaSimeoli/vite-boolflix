@@ -37,23 +37,26 @@ export default {
 
 <template>
 <main>
-  <h2>Films</h2>
-    <ul>
-      <li v-for="(singleFilm, i) in store.films" :key='i'>
-        <ol>
-          <li> Titolo: {{ singleFilm.title }}</li>
-          <li>  <img :src="'https://image.tmdb.org/t/p/w500'+ singleFilm.poster_path" alt="Poster not available" class="w-25"></li>
-          <li> Titolo originale: {{ singleFilm.original_title }}</li>
-          <li class="text-uppercase"> 
-            <img :src="flags(singleFilm.original_language)" alt="">
-            Lingua originale:{{ singleFilm.original_language }}</li>
-          <li> Votazione: <span v-for="number in vote(singleFilm.vote_average)" :key="number">	 
-            <font-awesome-icon icon="fa-solid fa-star" /> </span>
+  <h2 class="text-center">Films</h2>
+  <div class="row">
+    <div class="card m-1" style="width: 18rem;" v-for="(singleFilm, i) in store.films" :key='i'>
+      <img :src="'https://image.tmdb.org/t/p/w500'+ singleFilm.poster_path" alt="Poster not available" class="w-100 card-img-top">
+      <div class="description">
+        <h3 class="card-title">  {{ singleFilm.title }}</h3>
+          <div class="card-body">
+            <p> Titolo originale: {{ singleFilm.original_title }}</p>
+           <p>
+            Lingua originale: {{ singleFilm.original_language }}
+            <img :src="flags(singleFilm.original_language)" alt=""></p>
+          <p> Votazione: <span v-for="number in vote(singleFilm.vote_average)" :key="number">	 
+            <font-awesome-icon icon="fa-solid fa-star" class="text-warning"/> </span>
             <span v-for="number in (5 - vote(singleFilm.vote_average))" :key="number">	
-            <font-awesome-icon icon="fa-regular fa-star" /> </span></li>
-        </ol>
-      </li>
-    </ul>
+            <font-awesome-icon icon="fa-regular fa-star" class="text-warning" /> </span></p>
+            <p> Trama: {{ singleFilm.overview }}</p>
+          </div>
+      </div>
+      </div>
+  </div>
     <h2>Series TV</h2>
     <ul>
       <li v-for="(singleSeries, i) in store.seriesTv" :key='i'>
@@ -73,7 +76,25 @@ export default {
 </template>
 
 <style scoped lang="scss">
+main {
+  height: 100vh;
+}
 img {
-  width: 25px;
+  width: 50px;
+}
+.row {
+  margin: 0 auto;
+  .card {
+    height: 400px;
+  }
+}
+.description {
+  display: none;
+}
+.card:hover .description {
+  display: block;
+}
+.card:hover img{
+  display: none;
 }
 </style>
