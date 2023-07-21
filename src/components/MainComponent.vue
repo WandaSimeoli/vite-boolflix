@@ -27,6 +27,9 @@ export default {
       else {
         return 'https://img.icons8.com/?size=512&id=39590&format=png'
       }
+    },
+    vote(element) {
+      return Math.ceil(element / 2);
     }
   }
 }
@@ -39,12 +42,13 @@ export default {
       <li v-for="(singleFilm, i) in store.films" :key='i'>
         <ol>
           <li> Titolo: {{ singleFilm.title }}</li>
-          <li>  <img :src="'https://image.tmdb.org/t/p/w500'+ singleFilm.poster_path" alt="Poster not available"></li>
+          <li>  <img :src="'https://image.tmdb.org/t/p/w500'+ singleFilm.poster_path" alt="Poster not available" class="w-25"></li>
           <li> Titolo originale: {{ singleFilm.original_title }}</li>
           <li class="text-uppercase"> 
             <img :src="flags(singleFilm.original_language)" alt="">
             Lingua originale:{{ singleFilm.original_language }}</li>
-          <li> Votazione: {{ singleFilm.vote_average }}</li>
+          <li> Votazione: <span v-for="number in vote(singleFilm.vote_average)" :key="number">	★ </span>
+            <span v-for="number in (5 - vote(singleFilm.vote_average))" :key="number">	☆ </span></li>
         </ol>
       </li>
     </ul>
