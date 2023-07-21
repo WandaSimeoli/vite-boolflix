@@ -47,8 +47,10 @@ export default {
           <li class="text-uppercase"> 
             <img :src="flags(singleFilm.original_language)" alt="">
             Lingua originale:{{ singleFilm.original_language }}</li>
-          <li> Votazione: <span v-for="number in vote(singleFilm.vote_average)" :key="number">	★ </span>
-            <span v-for="number in (5 - vote(singleFilm.vote_average))" :key="number">	☆ </span></li>
+          <li> Votazione: <span v-for="number in vote(singleFilm.vote_average)" :key="number">	 
+            <font-awesome-icon icon="fa-solid fa-star" /> </span>
+            <span v-for="number in (5 - vote(singleFilm.vote_average))" :key="number">	
+            <font-awesome-icon icon="fa-regular fa-star" /> </span></li>
         </ol>
       </li>
     </ul>
@@ -62,7 +64,8 @@ export default {
           <li class="text-uppercase"> 
             <img :src="flags(singleSeries.original_language)" alt="">
             Lingua originale: {{ singleSeries.original_language }}</li>
-          <li> Votazione: {{ singleSeries.vote_average }}</li>
+            <li> Votazione: <span v-for="number in vote(singleSeries.vote_average)" :key="number">	★ </span>
+            <span v-for="number in (5 - vote(singleSeries.vote_average))" :key="number">	☆ </span></li>
         </ol>
       </li>
     </ul>
