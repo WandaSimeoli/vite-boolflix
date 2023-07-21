@@ -39,15 +39,14 @@ export default {
 <main>
   <h2 class="text-center">Films</h2>
   <div class="row">
-    <div class="card m-1" style="width: 18rem;" v-for="(singleFilm, i) in store.films" :key='i'>
+    <div class="card m-1 text-bg-dark" style="width: 18rem;" v-for="(singleFilm, i) in store.films" :key='i'>
       <img :src="'https://image.tmdb.org/t/p/w500'+ singleFilm.poster_path" alt="Poster not available" class="w-100 card-img-top">
       <div class="description">
         <h3 class="card-title">  {{ singleFilm.title }}</h3>
           <div class="card-body">
             <p> Titolo originale: {{ singleFilm.original_title }}</p>
-           <p>
-            Lingua originale: {{ singleFilm.original_language }}
-            <img :src="flags(singleFilm.original_language)" alt=""></p>
+            <img :src="flags(singleFilm.original_language)" alt="">
+           <p class="text-uppercase">Lingua originale: {{ singleFilm.original_language }}</p>
           <p> Votazione: <span v-for="number in vote(singleFilm.vote_average)" :key="number">	 
             <font-awesome-icon icon="fa-solid fa-star" class="text-warning"/> </span>
             <span v-for="number in (5 - vote(singleFilm.vote_average))" :key="number">	
