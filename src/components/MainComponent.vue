@@ -40,13 +40,13 @@ export default {
   <h2 class="text-center">Films</h2>
   <div class="row">
     <div class="card m-1 text-bg-dark" style="width: 18rem;" v-for="(singleFilm, i) in store.films" :key='i'>
-      <img :src="'https://image.tmdb.org/t/p/w500'+ singleFilm.poster_path" alt="Poster not available" class="w-100 card-img-top">
+      <img :src="'https://image.tmdb.org/t/p/w500'+ singleFilm.poster_path" alt="Poster not available" class="w-100 card-img-top poster">
       <div class="description">
         <h3 class="card-title">  {{ singleFilm.title }}</h3>
           <div class="card-body">
             <p> Titolo originale: {{ singleFilm.original_title }}</p>
-            <img :src="flags(singleFilm.original_language)" alt="">
-           <p class="text-uppercase">Lingua originale: {{ singleFilm.original_language }}</p>
+           <p class="text-uppercase">Lingua originale: {{ singleFilm.original_language }}
+            <img :src="flags(singleFilm.original_language)" alt=""></p>
           <p> Votazione: <span v-for="number in vote(singleFilm.vote_average)" :key="number">	 
             <font-awesome-icon icon="fa-solid fa-star" class="text-warning"/> </span>
             <span v-for="number in (5 - vote(singleFilm.vote_average))" :key="number">	
@@ -54,33 +54,38 @@ export default {
             <p> Trama: {{ singleFilm.overview }}</p>
           </div>
       </div>
-      </div>
+    </div>
   </div>
-    <h2>Series TV</h2>
-    <ul>
-      <li v-for="(singleSeries, i) in store.seriesTv" :key='i'>
-        <ol>
-          <li> Titolo:{{ singleSeries.name }}</li>
-          <li>  <img :src="'https://image.tmdb.org/t/p/w500'+ singleSeries.poster_path" alt="Poster not available"></li>
-          <li> Titolo originale:{{ singleSeries.original_name }}</li>
-          <li class="text-uppercase"> 
-            <img :src="flags(singleSeries.original_language)" alt="">
-            Lingua originale: {{ singleSeries.original_language }}</li>
-            <li> Votazione: <span v-for="number in vote(singleSeries.vote_average)" :key="number">	★ </span>
-            <span v-for="number in (5 - vote(singleSeries.vote_average))" :key="number">	☆ </span></li>
-        </ol>
-      </li>
-    </ul>
+    <h2 class="text-center">Series TV</h2>
+    <div class="row">
+      <div class="card m-1 text-bg-dark" style="width: 18rem;" v-for="(singleSeries, i) in store.seriesTv" :key='i'>
+        <img :src="'https://image.tmdb.org/t/p/w500'+ singleSeries.poster_path" alt="Poster not available" class="w-100 card-img-top poster">
+        <div class="description">
+          <h3 class="card-title">  {{ singleSeries.name }}</h3>
+          <div class="card-body">
+            <p> Titolo originale:{{ singleSeries.original_name }}</p>
+            <p class="text-uppercase">Lingua originale: {{ singleSeries.original_language }}
+            <img :src="flags(singleSeries.original_language)" alt=""></p>
+            <p> Votazione: <span v-for="number in vote(singleSeries.vote_average)" :key="number">	 
+            <font-awesome-icon icon="fa-solid fa-star" class="text-warning"/> </span>
+            <span v-for="number in (5 - vote(singleSeries.vote_average))" :key="number">	
+            <font-awesome-icon icon="fa-regular fa-star" class="text-warning" /> </span></p>
+            <p> Trama: {{ singleSeries.overview }}</p>
+          </div>
+        </div> 
+      </div>
+    </div>
   </main>
 </template>
 
 <style scoped lang="scss">
 main {
   height: 100vh;
+  img {
+    width: 20px;
+  }
 }
-img {
-  width: 50px;
-}
+
 .row {
   margin: 0 auto;
   .card {
@@ -93,7 +98,7 @@ img {
 .card:hover .description {
   display: block;
 }
-.card:hover img{
+.card:hover .poster{
   display: none;
 }
 </style>
